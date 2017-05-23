@@ -25,7 +25,7 @@ class FakeBlood extends PluginBase implements Listener{
 		if($e->instanceof EntityDamageByEntityEvent){
 			if(!$e->isCancelled() and (mt_rand(1, self::CHANCE) === 1)){
 				if($e->getEntity() instanceof Player and $e->getDamager() instanceof Player){
-					$e->getEntity()->getLevel()->addParticle(new DestrpyBlockParticle($e->getEntity(), Block::get(152)));
+					$e->getEntity()->getLevel()->addParticle(new DestroyBlockParticle($e->getEntity(), Block::get(152)));
 				}
 			}
 		}
