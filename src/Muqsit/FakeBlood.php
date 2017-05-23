@@ -1,11 +1,17 @@
 <?php
 namespace Muqsit;
 
-use pocketmine\event\entity\{EntityDamageEvent, EntityDamageByEntityEvent};
-use pocketmine\event\Listener;
-use pocketmine\level\particle\RedstoneParticle;
-use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
+
+use pocketmine\event\{
+	entity\{
+		EntityDamageEvent, EntityDamageByEntityEvent
+	},
+	Listener
+};
+use pocketmine\Player;
+use pocketmine\level\particle\DestroyBlockParticle;
+use pocketmine\block\Block;
 
 class FakeBlood extends PluginBase implements Listener{
 
@@ -19,7 +25,7 @@ class FakeBlood extends PluginBase implements Listener{
 		if($e->instanceof EntityDamageByEntityEvent){
 			if(!$e->isCancelled() and (mt_rand(1, self::CHANCE) === 1)){
 				if($e->getEntity() instanceof Player and $e->getDamager() instanceof Player){
-					$e->getEntity()->getLevel()->addParticle(new RedstoneParticle($e->getEntity()));
+					$e->getEntity()->getLevel()->addParticle(new DestrpyBlockParticle($e->getEntity(), Block::get(152)));
 				}
 			}
 		}
